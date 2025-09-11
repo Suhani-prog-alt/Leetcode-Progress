@@ -7,14 +7,8 @@ class Solution {
 		int res = 0;
 		for(int i = 0; i<arr.length; i++) {
 			if(n<=arr[i]) {
-				if(n==arr[i]) {
-					res = i;
-					break;
-				}
-				else {
-					res = i;
-					break;
-				}
+				res = i;
+                break;
 			}
 		}
         if(n>arr[arr.length-1]){
