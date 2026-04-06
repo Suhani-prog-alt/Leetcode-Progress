@@ -1,10 +1,10 @@
 class Solution {
     public int bitwiseComplement(int n) {
-        if(n  == 0) return 1;
-        int m = 0;
-        while(Math.pow(2,m)<=n){
-            m++;
+        if(n==0) return 1;
+        int num =0;
+        while(num<n){
+            num = (num<<1)|1;
         }
-        return (int) (Math.pow(2,m) - 1- n);
+        return ~n & num;
     }
 }
