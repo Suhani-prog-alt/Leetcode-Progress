@@ -1,17 +1,19 @@
 class Solution {
     public int maxFrequencyElements(int[] nums) {
-        int [] arr = new int [100];
+        int [] fre = new int [100];
         for(int i = 0; i<nums.length; i++){
-            arr[nums[i]-1]++;
+            fre[nums[i]-1]++;
         }
-        int max = 0;
-        for(int i = 0; i<100; i++){
-            max = Math.max(arr[i],max);
+        int mx = 0;
+        for(int i  = 0; i<100; i++){
+            mx = Math.max(mx, fre[i]);
         }
         int ans = 0;
-        for(int i = 0; i<100;i++){
-            if(arr[i] == max)ans++;
+        for(int i = 0;i<100; i++){
+            if(mx == fre[i]){
+                ans+=mx;
+            }
         }
-        return ans*max;
+        return ans;
     }
 }
