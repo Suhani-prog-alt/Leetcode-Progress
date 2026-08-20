@@ -14,21 +14,29 @@
  * }
  */
 class Solution {
-    boolean ans;
+    // public boolean isBalanced(TreeNode root) {
+    //     // boolean l = isBalanced(l);
+    //     // boolean r = isBalanced(r);
+    //     // boolean s = Math.abs(ht(l)-ht(r))<=1;
+
+    // }
     public boolean isBalanced(TreeNode root) {
-        ans = true;
-        check(root);
-        return ans;
-    }
-
-    public int check(TreeNode root){
-        if(root == null)return 0;
-        if(!ans)return 0;
-        int left = check(root.left);
-        int right = check(root.right);
-        int diff = Math.abs(right - left);
-        if(diff>1) ans = false;
-        return Math.max(left, right)+1;
-
-    }
+			return Balanced(root).isBal;
+		}
+		public BalPair Balanced(TreeNode root) {
+			if(root == null) {
+				return new BalPair();
+			}
+			BalPair left = Balanced(root.left);
+			BalPair  right = Balanced(root.right);
+			BalPair bp = new BalPair();
+			bp.ht =Math.max(left.ht,right.ht)+1;
+			bp.isBal = (Math.abs((left.ht - right.ht))<=1 ? true : false) && left.isBal && right.isBal; 
+            return bp;
+		}
+		
+		class BalPair{
+			boolean isBal = true;
+			int ht = -1;
+		}
 }
