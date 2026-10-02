@@ -1,23 +1,19 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> arr = new ArrayList<>();
-        Parentheses(n, 0, 0, "", arr);
-        return arr;
+        List<String> l = new ArrayList<>();
+        check(n, "", 0, 0, l);
+        return l;
     }
+    public void check(int n, String s, int left, int right, List<String> l){
+        if(n == left && n == right){
+            l.add(s);
+            return;
+        }
 
-    public static void Parentheses(int n, int open, int closed, String ans, List<String> arr) {
-		
-		if(open == n && closed == n) {
-			// System.out.println(ans);
-            arr.add(ans);
-			return;
-		}
-		
-		if(open > n || closed > open) {
-			return;
-		}
-		
-		Parentheses(n, open+1, closed, ans + '(', arr);
-		Parentheses(n, open, closed+1, ans + ')', arr);
-	}
+        if(left>n || right > n)return;
+        check(n, s+"(", left+1, right, l);
+        if(left>right){
+            check(n, s+")", left, 1+right, l);
+        }
+    }
 }
