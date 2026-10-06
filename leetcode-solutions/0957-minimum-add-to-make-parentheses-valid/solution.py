@@ -11,4 +11,3 @@ class Solution:
                     open_cnt = 0
                     res+=1
         return res + open_cnt
-
