@@ -1,25 +1,24 @@
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-		for(int i =0; i<nums1.length; i++) {
-			if(map.containsKey(nums1[i])) {
-				map.put(nums1[i], map.get(nums1[i]) +1);
-			}else {
-				map.put(nums1[i], 1);
-			}
-		}
-		List<Integer> ll = new ArrayList<>();
-		for(int i = 0; i<nums2.length; i++) {
-			if(map.containsKey(nums2[i]) && map.get(nums2[i])>0) {
-				ll.add(nums2[i]);
-				map.put(nums2[i], map.get(nums2[i])-1);
-			}
-		}
-		int [] ans = new int [ll.size()];
-		
-		for(int i = 0; i<ans.length; i++) {
-			ans[i] = ll.get(i);
-		}
-		return ans;
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+        for(int i = 0;i<nums1.length; i++){
+            map1.put(nums1[i], map1.getOrDefault(nums1[i], 0)+1);
+        }
+
+        HashMap<Integer, Integer> map2 = new HashMap<>();
+        for(int i = 0;i<nums2.length; i++){
+            map2.put(nums2[i], map2.getOrDefault(nums2[i], 0)+1);
+        }
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int key : map1.keySet()){
+            if(map2.containsKey(key)){
+                int min = Math.min(map1.get(key), map2.get(key));
+                for(int i = 0; i<min; i++){
+                    arr.add(key);
+                }
+            }
+        }
+        return arr.stream().mapToInt(Integer::intValue).toArray();
     }
 }
